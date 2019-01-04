@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C31FDC421E01292009942E6 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C31FDC321E01292009942E6 /* Configuration.swift */; };
+		2C31FDC621E0130C009942E6 /* Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C31FDC521E0130C009942E6 /* Configuration.plist */; };
+		2C31FDCD21E017E3009942E6 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C31FDCC21E017E3009942E6 /* API.swift */; };
+		2C31FDCF21E0185A009942E6 /* PaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C31FDCE21E0185A009942E6 /* PaymentMethod.swift */; };
+		2C31FDD121E01914009942E6 /* ConfigurationApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C31FDD021E01914009942E6 /* ConfigurationApi.swift */; };
+		2C31FDD321E01CC0009942E6 /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C31FDD221E01CC0009942E6 /* URL+Extensions.swift */; };
 		2C94748121E0103C00521B53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C94748021E0103C00521B53 /* AppDelegate.swift */; };
 		2C94748321E0103C00521B53 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C94748221E0103C00521B53 /* ViewController.swift */; };
 		2C94748621E0103C00521B53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C94748421E0103C00521B53 /* Main.storyboard */; };
@@ -28,6 +34,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C31FDC321E01292009942E6 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		2C31FDC521E0130C009942E6 /* Configuration.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Configuration.plist; sourceTree = "<group>"; };
+		2C31FDCC21E017E3009942E6 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		2C31FDCE21E0185A009942E6 /* PaymentMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethod.swift; sourceTree = "<group>"; };
+		2C31FDD021E01914009942E6 /* ConfigurationApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationApi.swift; sourceTree = "<group>"; };
+		2C31FDD221E01CC0009942E6 /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extensions.swift"; sourceTree = "<group>"; };
 		2C94747D21E0103C00521B53 /* PaymentApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaymentApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C94748021E0103C00521B53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C94748221E0103C00521B53 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +80,54 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C31FDC221E01244009942E6 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				2C31FDC521E0130C009942E6 /* Configuration.plist */,
+				2C31FDC321E01292009942E6 /* Configuration.swift */,
+				2C31FDD021E01914009942E6 /* ConfigurationApi.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		2C31FDC721E01767009942E6 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2C31FDD221E01CC0009942E6 /* URL+Extensions.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		2C31FDC821E01775009942E6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2C31FDCE21E0185A009942E6 /* PaymentMethod.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2C31FDC921E0177C009942E6 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		2C31FDCA21E01795009942E6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2C31FDCC21E017E3009942E6 /* API.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		2C31FDCB21E0179C009942E6 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
 		2C94747421E0103C00521B53 = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +151,12 @@
 		2C94747F21E0103C00521B53 /* PaymentApp */ = {
 			isa = PBXGroup;
 			children = (
+				2C31FDC221E01244009942E6 /* Configuration */,
+				2C31FDC721E01767009942E6 /* Helpers */,
+				2C31FDC821E01775009942E6 /* Models */,
+				2C31FDC921E0177C009942E6 /* Networking */,
+				2C31FDCA21E01795009942E6 /* Resources */,
+				2C31FDCB21E0179C009942E6 /* Scenes */,
 				2C94748021E0103C00521B53 /* AppDelegate.swift */,
 				2C94748221E0103C00521B53 /* ViewController.swift */,
 				2C94748421E0103C00521B53 /* Main.storyboard */,
@@ -214,6 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C94748B21E0103D00521B53 /* LaunchScreen.storyboard in Resources */,
+				2C31FDC621E0130C009942E6 /* Configuration.plist in Resources */,
 				2C94748821E0103D00521B53 /* Assets.xcassets in Resources */,
 				2C94748621E0103C00521B53 /* Main.storyboard in Resources */,
 			);
@@ -302,8 +369,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C31FDC421E01292009942E6 /* Configuration.swift in Sources */,
+				2C31FDD321E01CC0009942E6 /* URL+Extensions.swift in Sources */,
+				2C31FDD121E01914009942E6 /* ConfigurationApi.swift in Sources */,
 				2C94748321E0103C00521B53 /* ViewController.swift in Sources */,
+				2C31FDCD21E017E3009942E6 /* API.swift in Sources */,
 				2C94748121E0103C00521B53 /* AppDelegate.swift in Sources */,
+				2C31FDCF21E0185A009942E6 /* PaymentMethod.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,6 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let pm = Configuration.ApiUrls.paymentMethods
+        print("Payment methods: \(pm)")
+
+        let ci = Configuration.ApiUrls.cardIssuers(paymentMethodId: "mastercard_1")
+        print("Card issuers: \(ci)")
+
+        let ins = Configuration.ApiUrls.installments(paymentMethodId: "mastercard_2", amount: "111111", issuerId: "ididid")
+        print("Installments: \(ins)")
+
         return true
     }
 
