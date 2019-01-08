@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C0B0EA321E4337100422394 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0B0EA221E4337100422394 /* Setting.swift */; };
+		2C0B0EA621E4349500422394 /* CardNumberSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0B0EA521E4349500422394 /* CardNumberSetting.swift */; };
+		2C0B0EA821E434B800422394 /* BinSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0B0EA721E434B800422394 /* BinSetting.swift */; };
+		2C0B0EAA21E434E000422394 /* SecurityCodeSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0B0EA921E434E000422394 /* SecurityCodeSetting.swift */; };
+		2C0B0EAD21E437AA00422394 /* AdditionalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0B0EAC21E437AA00422394 /* AdditionalInfo.swift */; };
+		2C0B0EAF21E4387F00422394 /* ProcessingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0B0EAE21E4387F00422394 /* ProcessingMode.swift */; };
+		2C0B0EB121E438BC00422394 /* FinancialInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0B0EB021E438BC00422394 /* FinancialInstitution.swift */; };
+		2C0B0EB321E43CE700422394 /* PaymentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0B0EB221E43CE700422394 /* PaymentType.swift */; };
 		2C31FDC421E01292009942E6 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C31FDC321E01292009942E6 /* Configuration.swift */; };
 		2C31FDC621E0130C009942E6 /* Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C31FDC521E0130C009942E6 /* Configuration.plist */; };
 		2C31FDCD21E017E3009942E6 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C31FDCC21E017E3009942E6 /* API.swift */; };
@@ -34,6 +42,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C0B0EA221E4337100422394 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
+		2C0B0EA521E4349500422394 /* CardNumberSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardNumberSetting.swift; sourceTree = "<group>"; };
+		2C0B0EA721E434B800422394 /* BinSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinSetting.swift; sourceTree = "<group>"; };
+		2C0B0EA921E434E000422394 /* SecurityCodeSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityCodeSetting.swift; sourceTree = "<group>"; };
+		2C0B0EAC21E437AA00422394 /* AdditionalInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInfo.swift; sourceTree = "<group>"; };
+		2C0B0EAE21E4387F00422394 /* ProcessingMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingMode.swift; sourceTree = "<group>"; };
+		2C0B0EB021E438BC00422394 /* FinancialInstitution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancialInstitution.swift; sourceTree = "<group>"; };
+		2C0B0EB221E43CE700422394 /* PaymentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentType.swift; sourceTree = "<group>"; };
 		2C31FDC321E01292009942E6 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		2C31FDC521E0130C009942E6 /* Configuration.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Configuration.plist; sourceTree = "<group>"; };
 		2C31FDCC21E017E3009942E6 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -80,6 +96,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C0B0EA421E4348700422394 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				2C0B0EA221E4337100422394 /* Setting.swift */,
+				2C0B0EA721E434B800422394 /* BinSetting.swift */,
+				2C0B0EA521E4349500422394 /* CardNumberSetting.swift */,
+				2C0B0EA921E434E000422394 /* SecurityCodeSetting.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		2C0B0EAB21E4379200422394 /* Substructures */ = {
+			isa = PBXGroup;
+			children = (
+				2C0B0EAC21E437AA00422394 /* AdditionalInfo.swift */,
+				2C0B0EB021E438BC00422394 /* FinancialInstitution.swift */,
+				2C0B0EAE21E4387F00422394 /* ProcessingMode.swift */,
+				2C0B0EB221E43CE700422394 /* PaymentType.swift */,
+			);
+			path = Substructures;
+			sourceTree = "<group>";
+		};
 		2C31FDC221E01244009942E6 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +139,8 @@
 		2C31FDC821E01775009942E6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2C0B0EAB21E4379200422394 /* Substructures */,
+				2C0B0EA421E4348700422394 /* Settings */,
 				2C31FDCE21E0185A009942E6 /* PaymentMethod.swift */,
 			);
 			path = Models;
@@ -369,12 +409,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C0B0EB121E438BC00422394 /* FinancialInstitution.swift in Sources */,
+				2C0B0EAD21E437AA00422394 /* AdditionalInfo.swift in Sources */,
 				2C31FDC421E01292009942E6 /* Configuration.swift in Sources */,
 				2C31FDD321E01CC0009942E6 /* URL+Extensions.swift in Sources */,
+				2C0B0EA821E434B800422394 /* BinSetting.swift in Sources */,
 				2C31FDD121E01914009942E6 /* ConfigurationApi.swift in Sources */,
+				2C0B0EAA21E434E000422394 /* SecurityCodeSetting.swift in Sources */,
+				2C0B0EB321E43CE700422394 /* PaymentType.swift in Sources */,
 				2C94748321E0103C00521B53 /* ViewController.swift in Sources */,
 				2C31FDCD21E017E3009942E6 /* API.swift in Sources */,
+				2C0B0EA621E4349500422394 /* CardNumberSetting.swift in Sources */,
+				2C0B0EAF21E4387F00422394 /* ProcessingMode.swift in Sources */,
 				2C94748121E0103C00521B53 /* AppDelegate.swift in Sources */,
+				2C0B0EA321E4337100422394 /* Setting.swift in Sources */,
 				2C31FDCF21E0185A009942E6 /* PaymentMethod.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
