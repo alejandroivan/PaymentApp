@@ -17,13 +17,13 @@ protocol AmountBusinessLogic {
 }
 
 protocol AmountDataStore {
-    //var name: String { get set }
+    var amount: Int? { get set }
 }
 
 class AmountInteractor: AmountBusinessLogic, AmountDataStore {
     var presenter: AmountPresentationLogic?
     var worker: AmountWorker?
-    //var name: String = ""
+    var amount: Int?
 
     // MARK: Do something
 
@@ -31,10 +31,12 @@ class AmountInteractor: AmountBusinessLogic, AmountDataStore {
         let digitSet = CharacterSet.decimalDigits
         let cleanString = String(request.input.unicodeScalars.filter { digitSet.contains($0) })
 
-        if cleanString.isEmpty {
+        if cleanString.isEmpty || cleanString == "0" {
+            amount = 0
             presenter?.clearAmount()
         } else {
-            let response = Amount.FormatAmount.Response(amount: Int(cleanString))
+            amount = Int(cleanString)
+            let response = Amount.FormatAmount.Response(amount: amount!)
             presenter?.presentAmount(response: response)
         }
     }

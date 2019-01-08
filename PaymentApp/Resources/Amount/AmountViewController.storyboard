@@ -47,6 +47,9 @@
                                         <integer key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="sgg-U6-wGP" kind="show" identifier="PaymentMethodCC" id="bAk-oK-dIu"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -71,6 +74,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ovb-sh-HYY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1026" y="-672"/>
+        </scene>
+        <!--PaymentMethodCCViewController-->
+        <scene sceneID="U3h-tf-hLZ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="PaymentMethodCCViewController" id="sgg-U6-wGP" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="poi-bQ-6Sm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1804" y="-673"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jmC-eu-l6M">
