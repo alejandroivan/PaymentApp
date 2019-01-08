@@ -28,6 +28,7 @@
 		2C31FDCF21E0185A009942E6 /* PaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C31FDCE21E0185A009942E6 /* PaymentMethod.swift */; };
 		2C31FDD121E01914009942E6 /* ConfigurationApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C31FDD021E01914009942E6 /* ConfigurationApi.swift */; };
 		2C31FDD321E01CC0009942E6 /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C31FDD221E01CC0009942E6 /* URL+Extensions.swift */; };
+		2C8E60C721E51E45003975A1 /* PaymentMethodCCTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8E60C621E51E44003975A1 /* PaymentMethodCCTableViewCell.swift */; };
 		2C94748121E0103C00521B53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C94748021E0103C00521B53 /* AppDelegate.swift */; };
 		2C94748321E0103C00521B53 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C94748221E0103C00521B53 /* ViewController.swift */; };
 		2C94748821E0103D00521B53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C94748721E0103D00521B53 /* Assets.xcassets */; };
@@ -77,6 +78,7 @@
 		2C31FDCE21E0185A009942E6 /* PaymentMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethod.swift; sourceTree = "<group>"; };
 		2C31FDD021E01914009942E6 /* ConfigurationApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationApi.swift; sourceTree = "<group>"; };
 		2C31FDD221E01CC0009942E6 /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extensions.swift"; sourceTree = "<group>"; };
+		2C8E60C621E51E44003975A1 /* PaymentMethodCCTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodCCTableViewCell.swift; sourceTree = "<group>"; };
 		2C94747D21E0103C00521B53 /* PaymentApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaymentApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C94748021E0103C00521B53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C94748221E0103C00521B53 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -220,6 +222,14 @@
 			path = Scenes;
 			sourceTree = "<group>";
 		};
+		2C8E60C521E51E2E003975A1 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2C8E60C621E51E44003975A1 /* PaymentMethodCCTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		2C94747421E0103C00521B53 = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +289,7 @@
 		2CB6B6FC21E459D2000AAB61 /* PaymentMethodCC */ = {
 			isa = PBXGroup;
 			children = (
+				2C8E60C521E51E2E003975A1 /* Cells */,
 				2CB6B70921E45B5C000AAB61 /* PaymentMethodCCInteractor.swift */,
 				2CB6B70A21E45B5C000AAB61 /* PaymentMethodCCModels.swift */,
 				2CB6B70B21E45B5C000AAB61 /* PaymentMethodCCPresenter.swift */,
@@ -465,12 +476,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-PaymentApp/Pods-PaymentApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -485,6 +498,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C0B0EBF21E440A000422394 /* AmountViewController.swift in Sources */,
+				2C8E60C721E51E45003975A1 /* PaymentMethodCCTableViewCell.swift in Sources */,
 				2C0B0EBB21E440A000422394 /* AmountInteractor.swift in Sources */,
 				2CB6B71321E45B5C000AAB61 /* PaymentMethodCCViewController.swift in Sources */,
 				2C0B0EB121E438BC00422394 /* FinancialInstitution.swift in Sources */,

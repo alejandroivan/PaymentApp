@@ -13,29 +13,60 @@
 import UIKit
 
 protocol PaymentMethodCCBusinessLogic {
-    func doSomething(request: PaymentMethodCC.Something.Request)
+    var paymentMethods: PaymentMethods { get }
+    func loadPaymentMethods(request: PaymentMethodCC.LoadPaymentMethods.Request)
+    func didSelectPaymentMethod(at index: Int)
 }
 
 protocol PaymentMethodCCDataStore {
     var amount: Int? { get set }
+    var selectedPaymentMethod: PaymentMethod? { get set }
 }
 
 class PaymentMethodCCInteractor: PaymentMethodCCBusinessLogic, PaymentMethodCCDataStore {
     var presenter: PaymentMethodCCPresentationLogic?
-    var worker: PaymentMethodCCWorker?
-    var amount: Int? {
-        didSet {
-            print("Chosen amount: \(String(describing: amount))")
-        }
+    var worker: PaymentMethodCCWorker? = PaymentMethodCCWorker()
+
+    var amount: Int?
+    var selectedPaymentMethod: PaymentMethod?
+
+    private var _paymentMethods: PaymentMethods = []
+    var paymentMethods: PaymentMethods { return _paymentMethods }
+
+    // MARK: Use cases
+    func loadPaymentMethods(request: PaymentMethodCC.LoadPaymentMethods.Request) {
+        typealias ResponseType = PaymentMethodCC.LoadPaymentMethods.Response
+        typealias ErrorType = PaymentMethodCC.LoadPaymentMethods.ErrorResponse
+
+        let response = ResponseType(isLoading: true, paymentMethods: [])
+        presenter?.presentLoadingIndicator(response: response)
+
+        worker?.getPaymentMethods(completion: { [weak self] (methods, success, error) in
+            guard success, let methods = methods?.creditCards else { // Requirement: Only credit cards!
+                let nsError = error! as NSError
+                let message: String
+
+                if nsError.code == NSURLErrorNotConnectedToInternet {
+                    message = "No hay conexión a Internet. Inténtalo nuevamente."
+                } else {
+                    message = "No se pudo cargar los métodos de pago. Inténtalo nuevamente más adelante."
+                }
+
+                let errorResponse = ErrorType(title: "Error al cargar",
+                                              message: message)
+
+                self?.presenter?.presentErrorMessage(response: errorResponse)
+                return
+            }
+
+            self?._paymentMethods = methods
+
+            let methodsResponse = ResponseType(isLoading: false, paymentMethods: methods)
+            self?.presenter?.presentPaymentMethods(response: methodsResponse)
+        })
     }
 
-    // MARK: Do something
-
-    func doSomething(request: PaymentMethodCC.Something.Request) {
-        worker = PaymentMethodCCWorker()
-        worker?.doSomeWork()
-
-        let response = PaymentMethodCC.Something.Response()
-        presenter?.presentSomething(response: response)
+    func didSelectPaymentMethod(at index: Int) {
+        selectedPaymentMethod = paymentMethods[index]
     }
 }

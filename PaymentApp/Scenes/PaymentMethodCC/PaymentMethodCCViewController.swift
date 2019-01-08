@@ -13,15 +13,23 @@
 import UIKit
 
 protocol PaymentMethodCCDisplayLogic: class {
-    func displaySomething(viewModel: PaymentMethodCC.Something.ViewModel)
+    func showLoadingIndicator()
+    func hideLoadingIndicator()
+
+    func displayPaymentMethods(viewModel: PaymentMethodCC.LoadPaymentMethods.ViewModel)
+    func displayErrorMessage(viewModel: PaymentMethodCC.LoadPaymentMethods.ErrorViewModel)
 }
 
 class PaymentMethodCCViewController: UIViewController, PaymentMethodCCDisplayLogic {
     var interactor: PaymentMethodCCBusinessLogic?
     var router: (NSObjectProtocol & PaymentMethodCCRoutingLogic & PaymentMethodCCDataPassing)?
 
-    // MARK: Object lifecycle
+    private var paymentMethods: [PaymentMethodViewModel] = []
 
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+
+    // MARK: Object lifecycle
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
@@ -33,7 +41,6 @@ class PaymentMethodCCViewController: UIViewController, PaymentMethodCCDisplayLog
     }
 
     // MARK: Setup
-
     private func setup() {
         let viewController = self
         let interactor = PaymentMethodCCInteractor()
@@ -48,7 +55,6 @@ class PaymentMethodCCViewController: UIViewController, PaymentMethodCCDisplayLog
     }
 
     // MARK: Routing
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let scene = segue.identifier {
             let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
@@ -59,22 +65,82 @@ class PaymentMethodCCViewController: UIViewController, PaymentMethodCCDisplayLog
     }
 
     // MARK: View lifecycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        doSomething()
+        loadPaymentMethods()
     }
 
-    // MARK: Do something
-
-    //@IBOutlet weak var nameTextField: UITextField!
-
-    func doSomething() {
-        let request = PaymentMethodCC.Something.Request()
-        interactor?.doSomething(request: request)
+    // MARK: Use cases
+    func showLoadingIndicator() {
+        view.isUserInteractionEnabled = false
+        activityIndicator.startAnimating()
     }
 
-    func displaySomething(viewModel: PaymentMethodCC.Something.ViewModel) {
-        //nameTextField.text = viewModel.name
+    func hideLoadingIndicator() {
+        view.isUserInteractionEnabled = true
+        activityIndicator.stopAnimating()
+    }
+
+    func displayPaymentMethods(viewModel: PaymentMethodCC.LoadPaymentMethods.ViewModel) {
+        paymentMethods = viewModel.paymentMethods
+        tableView.reloadData()
+
+        if viewModel.isLoading {
+            showLoadingIndicator()
+        } else {
+            hideLoadingIndicator()
+        }
+    }
+
+    func displayErrorMessage(viewModel: PaymentMethodCC.LoadPaymentMethods.ErrorViewModel) {
+        paymentMethods = []
+        tableView.reloadData()
+
+        let alertController = UIAlertController(title: viewModel.title,
+                                                message: viewModel.message,
+                                                preferredStyle: .alert)
+        
+        alertController.addAction(UIAlertAction(title: viewModel.cancelButtonTitle,
+                                                style: .cancel,
+                                                handler: { _ in
+                                                    self.navigationController?.popViewController(animated: true)
+        }))
+
+        hideLoadingIndicator()
+        present(alertController, animated: true, completion: nil)
+    }
+
+    // MARK: Methods
+    func loadPaymentMethods() {
+        let request = PaymentMethodCC.LoadPaymentMethods.Request()
+        interactor?.loadPaymentMethods(request: request)
+    }
+}
+
+// MARK: - UITableView DataSource & Delegate
+extension PaymentMethodCCViewController: UITableViewDataSource, UITableViewDelegate {
+    private static let cellIdentifier = "PaymentMethodCCTableViewCell"
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return paymentMethods.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let identifier = type(of: self).cellIdentifier
+        let paymentMethod = paymentMethods[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! PaymentMethodCCTableViewCell
+
+        cell.cellImageUrl = paymentMethod.imageUrl
+        cell.cellTitle = paymentMethod.name
+        cell.cellSubtitle = paymentMethod.type
+
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        interactor?.didSelectPaymentMethod(at: indexPath.row)
+
+        tableView.deselectRow(at: indexPath, animated: true)
+//        performSegue(withIdentifier: "BankSelection", sender: nil) // TODO: Uncomment when implemented
     }
 }

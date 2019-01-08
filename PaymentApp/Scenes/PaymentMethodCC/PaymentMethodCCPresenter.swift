@@ -13,16 +13,44 @@
 import UIKit
 
 protocol PaymentMethodCCPresentationLogic {
-    func presentSomething(response: PaymentMethodCC.Something.Response)
+    func presentLoadingIndicator(response: PaymentMethodCC.LoadPaymentMethods.Response)
+    func presentPaymentMethods(response: PaymentMethodCC.LoadPaymentMethods.Response)
+    func presentErrorMessage(response: PaymentMethodCC.LoadPaymentMethods.ErrorResponse)
 }
 
 class PaymentMethodCCPresenter: PaymentMethodCCPresentationLogic {
     weak var viewController: PaymentMethodCCDisplayLogic?
 
     // MARK: Do something
+    func presentLoadingIndicator(response: PaymentMethodCC.LoadPaymentMethods.Response) {
+        if response.isLoading {
+            viewController?.showLoadingIndicator()
+        } else {
+            viewController?.hideLoadingIndicator()
+        }
+    }
 
-    func presentSomething(response: PaymentMethodCC.Something.Response) {
-        let viewModel = PaymentMethodCC.Something.ViewModel()
-        viewController?.displaySomething(viewModel: viewModel)
+    func presentPaymentMethods(response: PaymentMethodCC.LoadPaymentMethods.Response) {
+        let paymentMethods = response.paymentMethods
+        var pmViewModels: [PaymentMethodViewModel] = []
+
+        paymentMethods.forEach {
+            let pmViewModel = PaymentMethodViewModel(imageUrl: $0.thumbnail,
+                                                     name: $0.name,
+                                                     type: "Tarjeta de crédito")
+            pmViewModels.append(pmViewModel)
+        }
+
+        let viewModel = PaymentMethodCC.LoadPaymentMethods.ViewModel(isLoading: response.isLoading,
+                                                                     paymentMethods: pmViewModels)
+        viewController?.displayPaymentMethods(viewModel: viewModel)
+    }
+
+    func presentErrorMessage(response: PaymentMethodCC.LoadPaymentMethods.ErrorResponse) {
+        // Here we should do stuff like localize strings and format
+        let viewModel = PaymentMethodCC.LoadPaymentMethods.ErrorViewModel(title: response.title,
+                                                                          message: response.message,
+                                                                          cancelButtonTitle: "Volver")
+        viewController?.displayErrorMessage(viewModel: viewModel)
     }
 }

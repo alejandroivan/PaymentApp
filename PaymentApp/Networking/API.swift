@@ -18,8 +18,18 @@ protocol APIMethods {
 
 // MARK: - Implementations
 public class API: APIMethods {
+    private static let errorDomain = "cl.penquistas.PaymentApp"
+
     func getPaymentMethods(success: @escaping (_ result: [PaymentMethod]) -> Void,
                            failure: @escaping (_ error: Error?) -> Void) {
+        guard let reachable = NetworkReachabilityManager()?.isReachable, reachable else {
+            let error = NSError(domain: type(of: self).errorDomain,
+                                code: NSURLErrorNotConnectedToInternet,
+                                userInfo: nil)
+            failure(error)
+            return
+        }
+
         let url = Configuration.ApiUrls.paymentMethods
 
         Alamofire.request(url, method: .get, headers: nil).responseJSON { response in

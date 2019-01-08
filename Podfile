@@ -8,7 +8,8 @@ target 'PaymentApp' do
 
   # Pods for PaymentApp
   pod 'Alamofire', '~> 4.0'
-
+  pod 'AlamofireImage', '~> 3.5'
+  
   target 'PaymentAppTests' do
     inherit! :search_paths
     # Pods for testing

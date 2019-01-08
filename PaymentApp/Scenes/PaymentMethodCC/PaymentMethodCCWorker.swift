@@ -13,6 +13,11 @@
 import UIKit
 
 class PaymentMethodCCWorker {
-    func doSomeWork() {
+    func getPaymentMethods(completion: @escaping ((PaymentMethods?, Bool, Error?) -> Void)) {
+        API().getPaymentMethods(success: { (methods) in
+            completion(methods, true, nil)
+        }) { (error) in
+            completion(nil, false, error)
+        }
     }
 }

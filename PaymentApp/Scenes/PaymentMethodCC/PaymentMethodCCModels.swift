@@ -14,13 +14,34 @@ import UIKit
 
 enum PaymentMethodCC {
     // MARK: Use cases
+    enum LoadPaymentMethods {
+        struct Request {}
 
-    enum Something {
-        struct Request {
-        }
         struct Response {
+            let isLoading: Bool
+            let paymentMethods: PaymentMethods
         }
+
+        struct ErrorResponse {
+            let title: String
+            let message: String
+        }
+
         struct ViewModel {
+            let isLoading: Bool
+            let paymentMethods: [PaymentMethodViewModel]
+        }
+
+        struct ErrorViewModel {
+            let title: String
+            let message: String
+            let cancelButtonTitle: String
         }
     }
+}
+
+struct PaymentMethodViewModel {
+    let imageUrl: String
+    let name: String
+    let type: String
 }
