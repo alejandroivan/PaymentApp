@@ -1,5 +1,5 @@
 //
-//  PaymentMethodCCViewController.swift
+//  BankSelectionViewController.swift
 //  PaymentApp
 //
 //  Created by Alejandro Melo Domínguez on 08-01-19.
@@ -12,24 +12,25 @@
 
 import UIKit
 
-protocol PaymentMethodCCDisplayLogic: class {
+protocol BankSelectionDisplayLogic: class {
     func showLoadingIndicator()
     func hideLoadingIndicator()
 
-    func displayPaymentMethods(viewModel: PaymentMethodCC.LoadPaymentMethods.ViewModel)
-    func displayErrorMessage(viewModel: PaymentMethodCC.LoadPaymentMethods.ErrorViewModel)
+    func displayBanks(viewModel: BankSelection.LoadBanks.ViewModel)
+    func displayErrorMessage(viewModel: BankSelection.LoadBanks.ErrorViewModel)
 }
 
-class PaymentMethodCCViewController: UIViewController, PaymentMethodCCDisplayLogic {
-    var interactor: PaymentMethodCCBusinessLogic?
-    var router: (NSObjectProtocol & PaymentMethodCCRoutingLogic & PaymentMethodCCDataPassing)?
+class BankSelectionViewController: UIViewController, BankSelectionDisplayLogic {
+    var interactor: BankSelectionBusinessLogic?
+    var router: (NSObjectProtocol & BankSelectionRoutingLogic & BankSelectionDataPassing)?
 
-    private var paymentMethods: [PaymentMethodViewModel] = []
+    private var banks: [BankViewModel] = []
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-
+    
     // MARK: Object lifecycle
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
@@ -41,11 +42,12 @@ class PaymentMethodCCViewController: UIViewController, PaymentMethodCCDisplayLog
     }
 
     // MARK: Setup
+
     private func setup() {
         let viewController = self
-        let interactor = PaymentMethodCCInteractor()
-        let presenter = PaymentMethodCCPresenter()
-        let router = PaymentMethodCCRouter()
+        let interactor = BankSelectionInteractor()
+        let presenter = BankSelectionPresenter()
+        let router = BankSelectionRouter()
         viewController.interactor = interactor
         viewController.router = router
         interactor.presenter = presenter
@@ -55,6 +57,7 @@ class PaymentMethodCCViewController: UIViewController, PaymentMethodCCDisplayLog
     }
 
     // MARK: Routing
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let scene = segue.identifier {
             let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
@@ -65,12 +68,13 @@ class PaymentMethodCCViewController: UIViewController, PaymentMethodCCDisplayLog
     }
 
     // MARK: View lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadPaymentMethods()
+        loadBanks()
     }
 
-    // MARK: Use cases
+    // MARK: Do something
     func showLoadingIndicator() {
         view.isUserInteractionEnabled = false
         activityIndicator.startAnimating()
@@ -81,8 +85,8 @@ class PaymentMethodCCViewController: UIViewController, PaymentMethodCCDisplayLog
         activityIndicator.stopAnimating()
     }
 
-    func displayPaymentMethods(viewModel: PaymentMethodCC.LoadPaymentMethods.ViewModel) {
-        paymentMethods = viewModel.paymentMethods
+    func displayBanks(viewModel: BankSelection.LoadBanks.ViewModel) {
+        banks = viewModel.banks
         tableView.reloadData()
 
         if viewModel.isLoading {
@@ -92,14 +96,14 @@ class PaymentMethodCCViewController: UIViewController, PaymentMethodCCDisplayLog
         }
     }
 
-    func displayErrorMessage(viewModel: PaymentMethodCC.LoadPaymentMethods.ErrorViewModel) {
-        paymentMethods = []
+    func displayErrorMessage(viewModel: BankSelection.LoadBanks.ErrorViewModel) {
+        banks = []
         tableView.reloadData()
 
         let alertController = UIAlertController(title: viewModel.title,
                                                 message: viewModel.message,
                                                 preferredStyle: .alert)
-        
+
         alertController.addAction(UIAlertAction(title: viewModel.cancelButtonTitle,
                                                 style: .cancel,
                                                 handler: { _ in
@@ -111,36 +115,35 @@ class PaymentMethodCCViewController: UIViewController, PaymentMethodCCDisplayLog
     }
 
     // MARK: Methods
-    func loadPaymentMethods() {
-        let request = PaymentMethodCC.LoadPaymentMethods.Request()
-        interactor?.loadPaymentMethods(request: request)
+    func loadBanks() {
+        let request = BankSelection.LoadBanks.Request()
+        interactor?.loadBanks(request: request)
     }
 }
 
 // MARK: - UITableView DataSource & Delegate
-extension PaymentMethodCCViewController: UITableViewDataSource, UITableViewDelegate {
-    private static let cellIdentifier = "PaymentMethodCCTableViewCell"
+extension BankSelectionViewController: UITableViewDataSource, UITableViewDelegate {
+    private static let cellIdentifier = "BankSelectionTableViewCell"
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return paymentMethods.count
+        return banks.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = type(of: self).cellIdentifier
-        let paymentMethod = paymentMethods[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! PaymentMethodCCTableViewCell
+        let bank = banks[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! BankSelectionTableViewCell
 
-        cell.cellImageUrl = paymentMethod.imageUrl
-        cell.cellTitle = paymentMethod.name
-        cell.cellSubtitle = paymentMethod.type
+        cell.cellImageUrl = bank.imageUrl
+        cell.cellTitle = bank.name
 
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        interactor?.didSelectPaymentMethod(at: indexPath.row)
+        interactor?.didSelectBank(at: indexPath.row)
 
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "BankSelection", sender: nil)
+//        performSegue(withIdentifier: "InstallmentsSelection", sender: nil)
     }
 }

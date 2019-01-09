@@ -13,7 +13,6 @@
 import UIKit
 
 protocol PaymentMethodCCBusinessLogic {
-    var paymentMethods: PaymentMethods { get }
     func loadPaymentMethods(request: PaymentMethodCC.LoadPaymentMethods.Request)
     func didSelectPaymentMethod(at index: Int)
 }
@@ -29,9 +28,7 @@ class PaymentMethodCCInteractor: PaymentMethodCCBusinessLogic, PaymentMethodCCDa
 
     var amount: Int?
     var selectedPaymentMethod: PaymentMethod?
-
-    private var _paymentMethods: PaymentMethods = []
-    var paymentMethods: PaymentMethods { return _paymentMethods }
+    var paymentMethods: PaymentMethods  = []
 
     // MARK: Use cases
     func loadPaymentMethods(request: PaymentMethodCC.LoadPaymentMethods.Request) {
@@ -59,7 +56,7 @@ class PaymentMethodCCInteractor: PaymentMethodCCBusinessLogic, PaymentMethodCCDa
                 return
             }
 
-            self?._paymentMethods = methods
+            self?.paymentMethods = methods
 
             let methodsResponse = ResponseType(isLoading: false, paymentMethods: methods)
             self?.presenter?.presentPaymentMethods(response: methodsResponse)

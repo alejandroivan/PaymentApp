@@ -14,6 +14,7 @@ import UIKit
 
 @objc protocol PaymentMethodCCRoutingLogic {
     //func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeToBankSelection(segue: UIStoryboardSegue?)
 }
 
 protocol PaymentMethodCCDataPassing {
@@ -25,33 +26,29 @@ class PaymentMethodCCRouter: NSObject, PaymentMethodCCRoutingLogic, PaymentMetho
     var dataStore: PaymentMethodCCDataStore?
 
     // MARK: Routing
+    func routeToBankSelection(segue: UIStoryboardSegue?) {
+        if let segue = segue {
+            let destinationVC = segue.destination as! BankSelectionViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToBankSelection(source: dataStore!, destination: &destinationDS)
+        } else {
+            let storyboard = UIStoryboard(name: "BankSelection", bundle: nil)
+            let destinationVC = storyboard.instantiateViewController(withIdentifier: "BankSelectionViewController") as! BankSelectionViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToBankSelection(source: dataStore!, destination: &destinationDS)
+            navigateToBankSelection(source: viewController!, destination: destinationVC)
+        }
 
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
-    //{
-    //  if let segue = segue {
-    //    let destinationVC = segue.destination as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //  } else {
-    //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-    //  }
-    //}
+    }
 
     // MARK: Navigation
-
-    //func navigateToSomewhere(source: PaymentMethodCCViewController, destination: SomewhereViewController)
-    //{
-    //  source.show(destination, sender: nil)
-    //}
+    func navigateToBankSelection(source: PaymentMethodCCViewController, destination: BankSelectionViewController) {
+        source.show(destination, sender: nil)
+    }
 
     // MARK: Passing data
-
-    //func passDataToSomewhere(source: PaymentMethodCCDataStore, destination: inout SomewhereDataStore)
-    //{
-    //  destination.name = source.name
-    //}
+    func passDataToBankSelection(source: PaymentMethodCCDataStore, destination: inout BankSelectionDataStore) {
+        destination.amount = source.amount
+        destination.paymentMethodId = source.selectedPaymentMethod?.id
+    }
 }
