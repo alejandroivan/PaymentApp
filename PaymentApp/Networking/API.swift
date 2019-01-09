@@ -22,6 +22,14 @@ public class API: APIMethods {
 
     func getPaymentMethods(success: @escaping (_ result: [PaymentMethod]) -> Void,
                            failure: @escaping (_ error: Error?) -> Void) {
+        getPaymentMethods(success: success,
+                          failure: failure,
+                          clearCacheBeforeRequesting: true)
+    }
+
+    func getPaymentMethods(success: @escaping (_ result: [PaymentMethod]) -> Void,
+                           failure: @escaping (_ error: Error?) -> Void,
+                           clearCacheBeforeRequesting: Bool = false) {
         guard let reachable = NetworkReachabilityManager()?.isReachable, reachable else {
             let error = NSError(domain: type(of: self).errorDomain,
                                 code: NSURLErrorNotConnectedToInternet,
@@ -30,8 +38,15 @@ public class API: APIMethods {
             return
         }
 
+        // Which URL to get
         let url = Configuration.ApiUrls.paymentMethods
 
+        // Clear cache if asked to
+        if clearCacheBeforeRequesting {
+            URLCache.shared.removeAllCachedResponses()
+        }
+
+        // Get the data from the URL
         Alamofire.request(url, method: .get, headers: nil).responseJSON { response in
             guard response.error == nil else {
                 failure(response.error)
