@@ -13,7 +13,7 @@
         <!--Elige tu método de pago-->
         <scene sceneID="IaC-tY-s8o">
             <objects>
-                <viewController storyboardIdentifier="PaymentMethodCCViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="n2r-jG-3xL" customClass="PaymentMethodCCViewController" customModule="PaymentApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PaymentMethodCCViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="n2r-jG-3xL" customClass="PaymentMethodCCViewController" customModule="PaymentApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LuA-FS-hbY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
