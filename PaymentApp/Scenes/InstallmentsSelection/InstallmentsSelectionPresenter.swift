@@ -13,16 +13,41 @@
 import UIKit
 
 protocol InstallmentsSelectionPresentationLogic {
-    func presentSomething(response: InstallmentsSelection.Something.Response)
+    func presentLoadingIndicator(response: InstallmentsSelection.LoadInstallments.Response)
+    func presentInstallments(response: InstallmentsSelection.LoadInstallments.Response)
+    func presentErrorMessage(response: InstallmentsSelection.LoadInstallments.ErrorResponse)
 }
 
 class InstallmentsSelectionPresenter: InstallmentsSelectionPresentationLogic {
     weak var viewController: InstallmentsSelectionDisplayLogic?
 
     // MARK: Do something
+    func presentLoadingIndicator(response: InstallmentsSelection.LoadInstallments.Response) {
+        if response.isLoading {
+            viewController?.showLoadingIndicator()
+        } else {
+            viewController?.hideLoadingIndicator()
+        }
+    }
 
-    func presentSomething(response: InstallmentsSelection.Something.Response) {
-        let viewModel = InstallmentsSelection.Something.ViewModel()
-        viewController?.displaySomething(viewModel: viewModel)
+    func presentInstallments(response: InstallmentsSelection.LoadInstallments.Response) {
+        let payerCosts = response.payerCosts
+        var pcViewModels: [InstallmentViewModel] = []
+
+        payerCosts.forEach {
+            let pcViewModel = InstallmentViewModel(message: $0.recommendedMessage)
+            pcViewModels.append(pcViewModel)
+        }
+
+        let viewModel = InstallmentsSelection.LoadInstallments.ViewModel(isLoading: false, payerCosts: pcViewModels)
+        viewController?.displayInstallments(viewModel: viewModel)
+    }
+
+    func presentErrorMessage(response: InstallmentsSelection.LoadInstallments.ErrorResponse) {
+        // Here we should do stuff like localize strings and format
+        let viewModel = InstallmentsSelection.LoadInstallments.ErrorViewModel(title: response.title,
+                                                                              message: response.message,
+                                                                              cancelButtonTitle: "Volver")
+        viewController?.displayErrorMessage(viewModel: viewModel)
     }
 }

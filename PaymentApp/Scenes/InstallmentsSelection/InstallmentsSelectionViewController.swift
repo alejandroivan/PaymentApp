@@ -13,12 +13,21 @@
 import UIKit
 
 protocol InstallmentsSelectionDisplayLogic: class {
-    func displaySomething(viewModel: InstallmentsSelection.Something.ViewModel)
+    func showLoadingIndicator()
+    func hideLoadingIndicator()
+
+    func displayInstallments(viewModel: InstallmentsSelection.LoadInstallments.ViewModel)
+    func displayErrorMessage(viewModel: InstallmentsSelection.LoadInstallments.ErrorViewModel)
 }
 
 class InstallmentsSelectionViewController: UIViewController, InstallmentsSelectionDisplayLogic {
     var interactor: InstallmentsSelectionBusinessLogic?
     var router: (NSObjectProtocol & InstallmentsSelectionRoutingLogic & InstallmentsSelectionDataPassing)?
+
+    private var installments: [InstallmentViewModel] = []
+
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     // MARK: Object lifecycle
 
@@ -62,19 +71,78 @@ class InstallmentsSelectionViewController: UIViewController, InstallmentsSelecti
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        doSomething()
+        loadInstallments()
     }
 
     // MARK: Do something
-
-    //@IBOutlet weak var nameTextField: UITextField!
-
-    func doSomething() {
-        let request = InstallmentsSelection.Something.Request()
-        interactor?.doSomething(request: request)
+    func showLoadingIndicator() {
+        view.isUserInteractionEnabled = false
+        activityIndicator.startAnimating()
     }
 
-    func displaySomething(viewModel: InstallmentsSelection.Something.ViewModel) {
-        //nameTextField.text = viewModel.name
+    func hideLoadingIndicator() {
+        view.isUserInteractionEnabled = true
+        activityIndicator.stopAnimating()
+    }
+
+    func displayInstallments(viewModel: InstallmentsSelection.LoadInstallments.ViewModel) {
+        installments = viewModel.payerCosts
+        tableView.reloadData()
+
+        if viewModel.isLoading {
+            showLoadingIndicator()
+        } else {
+            hideLoadingIndicator()
+        }
+    }
+
+    func displayErrorMessage(viewModel: InstallmentsSelection.LoadInstallments.ErrorViewModel) {
+        installments = []
+        tableView.reloadData()
+
+        let alertController = UIAlertController(title: viewModel.title,
+                                                message: viewModel.message,
+                                                preferredStyle: .alert)
+
+        alertController.addAction(UIAlertAction(title: viewModel.cancelButtonTitle,
+                                                style: .cancel,
+                                                handler: { _ in
+                                                    self.navigationController?.popViewController(animated: true)
+        }))
+
+        hideLoadingIndicator()
+        present(alertController, animated: true, completion: nil)
+    }
+
+    // MARK: Methods
+    func loadInstallments() {
+        let request = InstallmentsSelection.LoadInstallments.Request()
+        interactor?.loadInstallments(request: request)
+    }
+}
+
+// MARK: - UITableView DataSource & Delegate
+extension InstallmentsSelectionViewController: UITableViewDataSource, UITableViewDelegate {
+    private static let cellIdentifier = "InstallmentsSelectionTableViewCell"
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return installments.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let identifier = type(of: self).cellIdentifier
+        let installment = installments[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+
+        cell.textLabel?.text = installment.message
+
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        interactor?.didSelectPayerCost(at: indexPath.row)
+
+        tableView.deselectRow(at: indexPath, animated: true)
+//        performSegue(withIdentifier: "Voucher", sender: nil) // TODO: Uncomment when implementing the voucher view
     }
 }

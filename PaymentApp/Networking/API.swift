@@ -13,6 +13,16 @@ import Alamofire
 protocol APIMethods {
     func getPaymentMethods(success: @escaping (_ result: [PaymentMethod]) -> Void,
                            failure: @escaping (_ error: Error?) -> Void)
+
+    func getBanks(paymentMethodId: String,
+                  success: @escaping (_ result: Banks) -> Void,
+                  failure: @escaping (_ error: Error?) -> Void)
+
+    func getInstallments(amount: Int,
+                         paymentMethodId: String,
+                         issuerId: String,
+                         success: @escaping (_ result: Installments) -> Void,
+                         failure: @escaping (_ error: Error?) -> Void)
 }
 
 
@@ -117,6 +127,68 @@ public class API: APIMethods {
 
             do {
                 let objects = try JSONDecoder().decode(Banks.self, from: data)
+                success(objects)
+            } catch {
+                print("Unable to decode the JSON into PaymentMethod")
+                failure(nil)
+            }
+        }
+    }
+
+    // MARK: - Installments
+
+    func getInstallments(amount: Int,
+                         paymentMethodId: String,
+                         issuerId: String,
+                         success: @escaping (_ result: Installments) -> Void,
+                         failure: @escaping (_ error: Error?) -> Void) {
+        getInstallments(amount: amount,
+                        paymentMethodId: paymentMethodId,
+                        issuerId: issuerId,
+                        success: success,
+                        failure: failure,
+                        clearCacheBeforeRequesting: true)
+    }
+
+    func getInstallments(amount: Int,
+                         paymentMethodId: String,
+                         issuerId: String,
+                         success: @escaping (_ result: Installments) -> Void,
+                         failure: @escaping (_ error: Error?) -> Void,
+                         clearCacheBeforeRequesting: Bool = false) {
+        guard let reachable = NetworkReachabilityManager()?.isReachable, reachable else {
+            let error = NSError(domain: type(of: self).errorDomain,
+                                code: NSURLErrorNotConnectedToInternet,
+                                userInfo: nil)
+            failure(error)
+            return
+        }
+
+        // Which URL to get
+        let url = Configuration.ApiUrls.installments(paymentMethodId: paymentMethodId,
+                                                     amount: String(amount),
+                                                     issuerId: issuerId)
+
+        // Clear cache if asked to
+        if clearCacheBeforeRequesting {
+            URLCache.shared.removeAllCachedResponses()
+        }
+
+        // Get the data from the URL
+        Alamofire.request(url, method: .get, headers: nil).responseJSON { response in
+            guard response.error == nil else {
+                failure(response.error)
+                return
+            }
+
+            guard let data = response.data else {
+                print("The server returned empty data")
+                failure(nil)
+                return
+            }
+
+            do {
+                let objects = try JSONDecoder().decode(Installments.self, from: data)
                 success(objects)
             } catch {
                 print("Unable to decode the JSON into PaymentMethod")

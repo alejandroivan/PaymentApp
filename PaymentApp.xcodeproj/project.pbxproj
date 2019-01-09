@@ -37,6 +37,9 @@
 		2C31FDCF21E0185A009942E6 /* PaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C31FDCE21E0185A009942E6 /* PaymentMethod.swift */; };
 		2C31FDD121E01914009942E6 /* ConfigurationApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C31FDD021E01914009942E6 /* ConfigurationApi.swift */; };
 		2C31FDD321E01CC0009942E6 /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C31FDD221E01CC0009942E6 /* URL+Extensions.swift */; };
+		2C5A396321E6864C00811B0F /* Installment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5A396221E6864C00811B0F /* Installment.swift */; };
+		2C5A396521E68ABC00811B0F /* Issuer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5A396421E68ABC00811B0F /* Issuer.swift */; };
+		2C5A396721E68C9500811B0F /* PayerCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5A396621E68C9500811B0F /* PayerCost.swift */; };
 		2C8E60C721E51E45003975A1 /* PaymentMethodCCTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8E60C621E51E44003975A1 /* PaymentMethodCCTableViewCell.swift */; };
 		2C94748121E0103C00521B53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C94748021E0103C00521B53 /* AppDelegate.swift */; };
 		2C94748321E0103C00521B53 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C94748221E0103C00521B53 /* ViewController.swift */; };
@@ -103,6 +106,9 @@
 		2C31FDCE21E0185A009942E6 /* PaymentMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethod.swift; sourceTree = "<group>"; };
 		2C31FDD021E01914009942E6 /* ConfigurationApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationApi.swift; sourceTree = "<group>"; };
 		2C31FDD221E01CC0009942E6 /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extensions.swift"; sourceTree = "<group>"; };
+		2C5A396221E6864C00811B0F /* Installment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Installment.swift; sourceTree = "<group>"; };
+		2C5A396421E68ABC00811B0F /* Issuer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Issuer.swift; sourceTree = "<group>"; };
+		2C5A396621E68C9500811B0F /* PayerCost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayerCost.swift; sourceTree = "<group>"; };
 		2C8E60C621E51E44003975A1 /* PaymentMethodCCTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodCCTableViewCell.swift; sourceTree = "<group>"; };
 		2C94747D21E0103C00521B53 /* PaymentApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaymentApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C94748021E0103C00521B53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -175,6 +181,8 @@
 				2C0B0EB021E438BC00422394 /* FinancialInstitution.swift */,
 				2C0B0EAE21E4387F00422394 /* ProcessingMode.swift */,
 				2C0B0EB221E43CE700422394 /* PaymentType.swift */,
+				2C5A396421E68ABC00811B0F /* Issuer.swift */,
+				2C5A396621E68C9500811B0F /* PayerCost.swift */,
 			);
 			path = Substructures;
 			sourceTree = "<group>";
@@ -254,6 +262,7 @@
 				2C0B0EA421E4348700422394 /* Settings */,
 				2C31FDCE21E0185A009942E6 /* PaymentMethod.swift */,
 				2C2A3EC921E586F300284A8D /* Bank.swift */,
+				2C5A396221E6864C00811B0F /* Installment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -592,6 +601,7 @@
 				2C2A3ED621E593B400284A8D /* InstallmentsSelectionViewController.swift in Sources */,
 				2C8E60C721E51E45003975A1 /* PaymentMethodCCTableViewCell.swift in Sources */,
 				2C0B0EBB21E440A000422394 /* AmountInteractor.swift in Sources */,
+				2C5A396321E6864C00811B0F /* Installment.swift in Sources */,
 				2CB6B71321E45B5C000AAB61 /* PaymentMethodCCViewController.swift in Sources */,
 				2C0B0EB121E438BC00422394 /* FinancialInstitution.swift in Sources */,
 				2C0B0EBE21E440A000422394 /* AmountRouter.swift in Sources */,
@@ -628,7 +638,9 @@
 				2C31FDCF21E0185A009942E6 /* PaymentMethod.swift in Sources */,
 				2C2A3ECA21E586F300284A8D /* Bank.swift in Sources */,
 				2CB6B71121E45B5C000AAB61 /* PaymentMethodCCPresenter.swift in Sources */,
+				2C5A396521E68ABC00811B0F /* Issuer.swift in Sources */,
 				2C0B0EBC21E440A000422394 /* AmountModels.swift in Sources */,
+				2C5A396721E68C9500811B0F /* PayerCost.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

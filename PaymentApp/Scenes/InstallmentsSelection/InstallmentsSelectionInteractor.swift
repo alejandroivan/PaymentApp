@@ -13,7 +13,8 @@
 import UIKit
 
 protocol InstallmentsSelectionBusinessLogic {
-    func doSomething(request: InstallmentsSelection.Something.Request)
+    func loadInstallments(request: InstallmentsSelection.LoadInstallments.Request)
+    func didSelectPayerCost(at index: Int)
 }
 
 protocol InstallmentsSelectionDataStore {
@@ -24,24 +25,51 @@ protocol InstallmentsSelectionDataStore {
 
 class InstallmentsSelectionInteractor: InstallmentsSelectionBusinessLogic, InstallmentsSelectionDataStore {
     var presenter: InstallmentsSelectionPresentationLogic?
-    var worker: InstallmentsSelectionWorker?
+    var worker: InstallmentsSelectionWorker? = InstallmentsSelectionWorker()
 
     var amount: Int?
     var paymentMethodId: String?
     var cardIssuerId: String?
+    var payerCosts: PayerCosts = []
+    var selectedPayerCost: PayerCost?
 
     // MARK: Do something
+    func loadInstallments(request: InstallmentsSelection.LoadInstallments.Request) {
+        typealias ResponseType = InstallmentsSelection.LoadInstallments.Response
+        typealias ErrorType = InstallmentsSelection.LoadInstallments.ErrorResponse
 
-    func doSomething(request: InstallmentsSelection.Something.Request) {
-//        worker = InstallmentsSelectionWorker()
-//        worker?.doSomeWork()
-//
-//        let response = InstallmentsSelection.Something.Response()
-//        presenter?.presentSomething(response: response)
+        let response = ResponseType(isLoading: true, payerCosts: [])
+        presenter?.presentLoadingIndicator(response: response)
 
-        print("GOT DATA:")
-        print("- amount: \(amount!)")
-        print("- paymentMethodId: \(paymentMethodId!)")
-        print("- cardIssuerId: \(cardIssuerId!)")
+        worker?.getInstallments(amount: amount!,
+                                paymentMethodId: paymentMethodId!,
+                                issuerId: cardIssuerId!,
+                                completion: { [weak self] (installments, success, error) in
+                                    guard success, let installments = installments else {
+                                        let nsError = error! as NSError
+                                        let message: String
+
+                                        if nsError.code == NSURLErrorNotConnectedToInternet {
+                                            message = "No hay conexión a Internet. Inténtalo nuevamente."
+                                        } else {
+                                            message = "No se pudo cargar las opciones de pago en cuotas. Inténtalo nuevamente más adelante."
+                                        }
+
+                                        let errorResponse = ErrorType(title: "Error al cargar",
+                                                                      message: message)
+
+                                        self?.presenter?.presentErrorMessage(response: errorResponse)
+                                        return
+                                    }
+
+                                    self?.payerCosts = installments.first!.payerCosts
+
+                                    let installmentsResponse = ResponseType(isLoading: false, payerCosts: installments.first!.payerCosts)
+                                    self?.presenter?.presentInstallments(response: installmentsResponse)
+        })
+    }
+
+    func didSelectPayerCost(at index: Int) {
+        selectedPayerCost = payerCosts[index]
     }
 }

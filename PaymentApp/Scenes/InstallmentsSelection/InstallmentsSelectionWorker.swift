@@ -13,6 +13,17 @@
 import UIKit
 
 class InstallmentsSelectionWorker {
-    func doSomeWork() {
+    func getInstallments(amount: Int,
+                         paymentMethodId: String,
+                         issuerId: String,
+                         completion: @escaping ((Installments?, Bool, Error?) -> Void)) {
+        API().getInstallments(amount: amount,
+                              paymentMethodId: paymentMethodId,
+                              issuerId: issuerId,
+                              success: { (installment) in
+                                completion(installment, true, nil)
+        }) { (error) in
+            completion(nil, false, error)
+        }
     }
 }
