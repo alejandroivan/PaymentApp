@@ -59,7 +59,7 @@ class BankSelectionInteractor: BankSelectionBusinessLogic, BankSelectionDataStor
                                         message = "Ha ocurrido un error al cargar la información de bancos. Inténtalo nuevamente más adelante."
                                     }
                                 } else {
-                                    message = "No se ha encontrado bancos para selección. Por favor, elige otro medio de pago."
+                                    message = "No se ha encontrado bancos compatibles con tu selección. Por favor, elige otro medio de pago."
                                 }
 
                                 let errorResponse = ErrorType(title: "Error al cargar",
@@ -79,5 +79,4 @@ class BankSelectionInteractor: BankSelectionBusinessLogic, BankSelectionDataStor
     func didSelectBank(at index: Int) {
         selectedBank = banks[index]
     }
-
 }
