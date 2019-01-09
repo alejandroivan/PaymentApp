@@ -13,7 +13,6 @@
 import UIKit
 
 @objc protocol PaymentMethodCCRoutingLogic {
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
     func routeToBankSelection(segue: UIStoryboardSegue?)
 }
 
@@ -33,12 +32,11 @@ class PaymentMethodCCRouter: NSObject, PaymentMethodCCRoutingLogic, PaymentMetho
             passDataToBankSelection(source: dataStore!, destination: &destinationDS)
         } else {
             let storyboard = UIStoryboard(name: "BankSelection", bundle: nil)
-            let destinationVC = storyboard.instantiateViewController(withIdentifier: "BankSelectionViewController") as! BankSelectionViewController
+            let destinationVC = storyboard.instantiateInitialViewController() as! BankSelectionViewController
             var destinationDS = destinationVC.router!.dataStore!
             passDataToBankSelection(source: dataStore!, destination: &destinationDS)
             navigateToBankSelection(source: viewController!, destination: destinationVC)
         }
-
     }
 
     // MARK: Navigation

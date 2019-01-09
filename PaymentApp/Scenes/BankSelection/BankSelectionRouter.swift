@@ -13,7 +13,7 @@
 import UIKit
 
 @objc protocol BankSelectionRoutingLogic {
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeToInstallmentsSelection(segue: UIStoryboardSegue?)
 }
 
 protocol BankSelectionDataPassing {
@@ -25,33 +25,29 @@ class BankSelectionRouter: NSObject, BankSelectionRoutingLogic, BankSelectionDat
     var dataStore: BankSelectionDataStore?
 
     // MARK: Routing
-
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
-    //{
-    //  if let segue = segue {
-    //    let destinationVC = segue.destination as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //  } else {
-    //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-    //  }
-    //}
+    func routeToInstallmentsSelection(segue: UIStoryboardSegue?) {
+        if let segue = segue {
+            let destinationVC = segue.destination as! InstallmentsSelectionViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToInstallmentsSelection(source: dataStore!, destination: &destinationDS)
+        } else {
+            let storyboard = UIStoryboard(name: "InstallmentsSelection", bundle: nil)
+            let destinationVC = storyboard.instantiateInitialViewController() as! InstallmentsSelectionViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToInstallmentsSelection(source: dataStore!, destination: &destinationDS)
+            navigateToInstallmentsSelection(source: viewController!, destination: destinationVC)
+        }
+    }
 
     // MARK: Navigation
-
-    //func navigateToSomewhere(source: BankSelectionViewController, destination: SomewhereViewController)
-    //{
-    //  source.show(destination, sender: nil)
-    //}
+    func navigateToInstallmentsSelection(source: BankSelectionViewController, destination: InstallmentsSelectionViewController) {
+        source.show(destination, sender: nil)
+    }
 
     // MARK: Passing data
-
-    //func passDataToSomewhere(source: BankSelectionDataStore, destination: inout SomewhereDataStore)
-    //{
-    //  destination.name = source.name
-    //}
+    func passDataToInstallmentsSelection(source: BankSelectionDataStore, destination: inout InstallmentsSelectionDataStore) {
+        destination.amount = source.amount
+        destination.paymentMethodId = source.paymentMethodId
+        destination.cardIssuerId = source.selectedBank?.id
+    }
 }

@@ -24,6 +24,13 @@
 		2C0B0EC321E440C500422394 /* AmountViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C0B0EC221E440C500422394 /* AmountViewController.storyboard */; };
 		2C2A3EC821E5850E00284A8D /* BankSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2A3EC721E5850E00284A8D /* BankSelectionTableViewCell.swift */; };
 		2C2A3ECA21E586F300284A8D /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2A3EC921E586F300284A8D /* Bank.swift */; };
+		2C2A3ED221E593B400284A8D /* InstallmentsSelectionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2A3ECC21E593B400284A8D /* InstallmentsSelectionInteractor.swift */; };
+		2C2A3ED321E593B400284A8D /* InstallmentsSelectionModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2A3ECD21E593B400284A8D /* InstallmentsSelectionModels.swift */; };
+		2C2A3ED421E593B400284A8D /* InstallmentsSelectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2A3ECE21E593B400284A8D /* InstallmentsSelectionPresenter.swift */; };
+		2C2A3ED521E593B400284A8D /* InstallmentsSelectionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2A3ECF21E593B400284A8D /* InstallmentsSelectionRouter.swift */; };
+		2C2A3ED621E593B400284A8D /* InstallmentsSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2A3ED021E593B400284A8D /* InstallmentsSelectionViewController.swift */; };
+		2C2A3ED721E593B400284A8D /* InstallmentsSelectionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2A3ED121E593B400284A8D /* InstallmentsSelectionWorker.swift */; };
+		2C2A3EDA21E5940700284A8D /* InstallmentsSelection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C2A3ED921E5940700284A8D /* InstallmentsSelection.storyboard */; };
 		2C31FDC421E01292009942E6 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C31FDC321E01292009942E6 /* Configuration.swift */; };
 		2C31FDC621E0130C009942E6 /* Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C31FDC521E0130C009942E6 /* Configuration.plist */; };
 		2C31FDCD21E017E3009942E6 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C31FDCC21E017E3009942E6 /* API.swift */; };
@@ -83,6 +90,13 @@
 		2C0B0EC221E440C500422394 /* AmountViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AmountViewController.storyboard; sourceTree = "<group>"; };
 		2C2A3EC721E5850E00284A8D /* BankSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		2C2A3EC921E586F300284A8D /* Bank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bank.swift; sourceTree = "<group>"; };
+		2C2A3ECC21E593B400284A8D /* InstallmentsSelectionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallmentsSelectionInteractor.swift; sourceTree = "<group>"; };
+		2C2A3ECD21E593B400284A8D /* InstallmentsSelectionModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallmentsSelectionModels.swift; sourceTree = "<group>"; };
+		2C2A3ECE21E593B400284A8D /* InstallmentsSelectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallmentsSelectionPresenter.swift; sourceTree = "<group>"; };
+		2C2A3ECF21E593B400284A8D /* InstallmentsSelectionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallmentsSelectionRouter.swift; sourceTree = "<group>"; };
+		2C2A3ED021E593B400284A8D /* InstallmentsSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallmentsSelectionViewController.swift; sourceTree = "<group>"; };
+		2C2A3ED121E593B400284A8D /* InstallmentsSelectionWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallmentsSelectionWorker.swift; sourceTree = "<group>"; };
+		2C2A3ED921E5940700284A8D /* InstallmentsSelection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InstallmentsSelection.storyboard; sourceTree = "<group>"; };
 		2C31FDC321E01292009942E6 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		2C31FDC521E0130C009942E6 /* Configuration.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Configuration.plist; sourceTree = "<group>"; };
 		2C31FDCC21E017E3009942E6 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -194,6 +208,27 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		2C2A3ECB21E5939C00284A8D /* InstallmentsSelection */ = {
+			isa = PBXGroup;
+			children = (
+				2C2A3ECC21E593B400284A8D /* InstallmentsSelectionInteractor.swift */,
+				2C2A3ECD21E593B400284A8D /* InstallmentsSelectionModels.swift */,
+				2C2A3ECE21E593B400284A8D /* InstallmentsSelectionPresenter.swift */,
+				2C2A3ECF21E593B400284A8D /* InstallmentsSelectionRouter.swift */,
+				2C2A3ED021E593B400284A8D /* InstallmentsSelectionViewController.swift */,
+				2C2A3ED121E593B400284A8D /* InstallmentsSelectionWorker.swift */,
+			);
+			path = InstallmentsSelection;
+			sourceTree = "<group>";
+		};
+		2C2A3ED821E593F600284A8D /* InstallmentsSelection */ = {
+			isa = PBXGroup;
+			children = (
+				2C2A3ED921E5940700284A8D /* InstallmentsSelection.storyboard */,
+			);
+			path = InstallmentsSelection;
+			sourceTree = "<group>";
+		};
 		2C31FDC221E01244009942E6 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,6 +272,7 @@
 				2C0B0EC121E440B900422394 /* Amount */,
 				2CB6B6F921E459A8000AAB61 /* PaymentMethod */,
 				2CB6B71521E5803F000AAB61 /* BankSelection */,
+				2C2A3ED821E593F600284A8D /* InstallmentsSelection */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -247,6 +283,7 @@
 				2C0B0EB421E4402800422394 /* Amount */,
 				2CB6B6FC21E459D2000AAB61 /* PaymentMethodCC */,
 				2CF808FD21E580E3003D57D3 /* BankSelection */,
+				2C2A3ECB21E5939C00284A8D /* InstallmentsSelection */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -460,6 +497,7 @@
 				2CB6B71721E5804E000AAB61 /* BankSelection.storyboard in Resources */,
 				2C94748B21E0103D00521B53 /* LaunchScreen.storyboard in Resources */,
 				2C31FDC621E0130C009942E6 /* Configuration.plist in Resources */,
+				2C2A3EDA21E5940700284A8D /* InstallmentsSelection.storyboard in Resources */,
 				2C94748821E0103D00521B53 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -549,7 +587,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C2A3ED721E593B400284A8D /* InstallmentsSelectionWorker.swift in Sources */,
 				2C0B0EBF21E440A000422394 /* AmountViewController.swift in Sources */,
+				2C2A3ED621E593B400284A8D /* InstallmentsSelectionViewController.swift in Sources */,
 				2C8E60C721E51E45003975A1 /* PaymentMethodCCTableViewCell.swift in Sources */,
 				2C0B0EBB21E440A000422394 /* AmountInteractor.swift in Sources */,
 				2CB6B71321E45B5C000AAB61 /* PaymentMethodCCViewController.swift in Sources */,
@@ -576,11 +616,15 @@
 				2C0B0EBD21E440A000422394 /* AmountPresenter.swift in Sources */,
 				2C0B0EAF21E4387F00422394 /* ProcessingMode.swift in Sources */,
 				2CF8090721E580F6003D57D3 /* BankSelectionRouter.swift in Sources */,
+				2C2A3ED521E593B400284A8D /* InstallmentsSelectionRouter.swift in Sources */,
 				2CF8090621E580F6003D57D3 /* BankSelectionPresenter.swift in Sources */,
 				2CB6B71021E45B5C000AAB61 /* PaymentMethodCCModels.swift in Sources */,
 				2CF8090521E580F6003D57D3 /* BankSelectionModels.swift in Sources */,
 				2C94748121E0103C00521B53 /* AppDelegate.swift in Sources */,
 				2C0B0EA321E4337100422394 /* Setting.swift in Sources */,
+				2C2A3ED421E593B400284A8D /* InstallmentsSelectionPresenter.swift in Sources */,
+				2C2A3ED321E593B400284A8D /* InstallmentsSelectionModels.swift in Sources */,
+				2C2A3ED221E593B400284A8D /* InstallmentsSelectionInteractor.swift in Sources */,
 				2C31FDCF21E0185A009942E6 /* PaymentMethod.swift in Sources */,
 				2C2A3ECA21E586F300284A8D /* Bank.swift in Sources */,
 				2CB6B71121E45B5C000AAB61 /* PaymentMethodCCPresenter.swift in Sources */,

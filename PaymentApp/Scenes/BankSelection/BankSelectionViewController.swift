@@ -144,6 +144,6 @@ extension BankSelectionViewController: UITableViewDataSource, UITableViewDelegat
         interactor?.didSelectBank(at: indexPath.row)
 
         tableView.deselectRow(at: indexPath, animated: true)
-//        performSegue(withIdentifier: "InstallmentsSelection", sender: nil)
+        performSegue(withIdentifier: "InstallmentsSelection", sender: nil)
     }
 }

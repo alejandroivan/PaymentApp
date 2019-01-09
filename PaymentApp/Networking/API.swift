@@ -42,7 +42,6 @@ public class API: APIMethods {
 
         // Which URL to get
         let url = Configuration.ApiUrls.paymentMethods
-        print("GET: \(url)")
 
         // Clear cache if asked to
         if clearCacheBeforeRequesting {
@@ -97,7 +96,6 @@ public class API: APIMethods {
 
         // Which URL to get
         let url = Configuration.ApiUrls.cardIssuers(paymentMethodId: paymentMethodId)
-        print("GET: \(url)")
 
         // Clear cache if asked to
         if clearCacheBeforeRequesting {

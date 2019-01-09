@@ -100,11 +100,20 @@
                     <connections>
                         <outlet property="activityIndicator" destination="DbQ-q6-JPJ" id="AJt-ny-igX"/>
                         <outlet property="tableView" destination="asG-Ob-7Dn" id="XfN-ct-CB7"/>
+                        <segue destination="4hc-BV-dut" kind="show" identifier="InstallmentsSelection" id="thW-DZ-iLb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8un-rB-tyd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1148" y="114.69265367316342"/>
+        </scene>
+        <!--InstallmentsSelection-->
+        <scene sceneID="MHB-2I-h5b">
+            <objects>
+                <viewControllerPlaceholder storyboardName="InstallmentsSelection" id="4hc-BV-dut" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4qB-ai-hi1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1764" y="114"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0uw-vb-TXa">
