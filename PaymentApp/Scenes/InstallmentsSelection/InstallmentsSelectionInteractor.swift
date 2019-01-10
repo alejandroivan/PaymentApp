@@ -68,9 +68,19 @@ class InstallmentsSelectionInteractor: InstallmentsSelectionBusinessLogic, Insta
                                         return
                                     }
 
-                                    self?.payerCosts = installments.first!.payerCosts
+                                    // If didn't get any installments, it's probably because the amount is too big
+                                    // Just say that there are no installments plan for the input data
+                                    guard let pcs = installments.first?.payerCosts else {
+                                        let errorResponse = ErrorType(title: "Error al cargar",
+                                                                      message: "No se ha podido obtener opciones de pago con los datos seleccionados. Inténtalo nuevamente.")
 
-                                    let installmentsResponse = ResponseType(isLoading: false, payerCosts: installments.first!.payerCosts)
+                                        self?.presenter?.presentErrorMessage(response: errorResponse)
+                                        return
+                                    }
+
+                                    self?.payerCosts = pcs
+                                    let installmentsResponse = ResponseType(isLoading: false, payerCosts: pcs)
+
                                     self?.presenter?.presentInstallments(response: installmentsResponse)
         })
     }
