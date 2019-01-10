@@ -119,6 +119,14 @@ class InstallmentsSelectionViewController: UIViewController, InstallmentsSelecti
         let request = InstallmentsSelection.LoadInstallments.Request()
         interactor?.loadInstallments(request: request)
     }
+
+    func goBackToAmount() {
+        if let vc = navigationController?.viewControllers.first as? AmountDisplayLogic {
+            vc.displayClearedAmount()
+        }
+
+        navigationController?.popToRootViewController(animated: true)
+    }
 }
 
 // MARK: - UITableView DataSource & Delegate
@@ -140,9 +148,33 @@ extension InstallmentsSelectionViewController: UITableViewDataSource, UITableVie
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        interactor?.didSelectPayerCost(at: indexPath.row)
+        let selectedIndex = indexPath.row
+        let recommendedMessage = installments[selectedIndex].message
 
-        tableView.deselectRow(at: indexPath, animated: true)
-//        performSegue(withIdentifier: "Voucher", sender: nil) // TODO: Uncomment when implementing the voucher view
+        let fullMessage = "Se realizará tu compra con el siguiente detalle:\n\n\(recommendedMessage)"
+
+        let alertController = UIAlertController(title: "Confirmar compra",
+                                                message: fullMessage,
+                                                preferredStyle: .alert)
+
+        alertController.addAction(UIAlertAction(title: "Comprar",
+                                                style: .default,
+                                                handler: { (_) in
+                                                    self.tableView.deselectRow(at: indexPath, animated: true)
+
+                                                    self.interactor?.didConfirmPayerCost(at: selectedIndex,
+                                                                                         completion: {
+                                                                                            self.performSegue(withIdentifier: "Voucher", sender: nil)
+                                                                                            self.goBackToAmount()
+                                                    })
+        }))
+
+        alertController.addAction(UIAlertAction(title: "Cancelar",
+                                                style: .cancel,
+                                                handler: { (_) in
+                                                    self.tableView.deselectRow(at: indexPath, animated: true)
+        }))
+
+        present(alertController, animated: true, completion: nil)
     }
 }

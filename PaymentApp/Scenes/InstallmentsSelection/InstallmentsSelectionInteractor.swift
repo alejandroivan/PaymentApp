@@ -14,7 +14,7 @@ import UIKit
 
 protocol InstallmentsSelectionBusinessLogic {
     func loadInstallments(request: InstallmentsSelection.LoadInstallments.Request)
-    func didSelectPayerCost(at index: Int)
+    func didConfirmPayerCost(at index: Int, completion: (() -> Void)?)
 }
 
 protocol InstallmentsSelectionDataStore {
@@ -69,7 +69,8 @@ class InstallmentsSelectionInteractor: InstallmentsSelectionBusinessLogic, Insta
         })
     }
 
-    func didSelectPayerCost(at index: Int) {
+    func didConfirmPayerCost(at index: Int, completion: (() -> Void)? = nil) {
         selectedPayerCost = payerCosts[index]
+        completion?()
     }
 }

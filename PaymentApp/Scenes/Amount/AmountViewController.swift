@@ -73,6 +73,11 @@ class AmountViewController: UIViewController, AmountDisplayLogic {
         amountTextField.becomeFirstResponder()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        amountTextField.resignFirstResponder()
+    }
+
     // MARK: Use cases
 
     func displayFormattedAmount(viewModel: Amount.FormatAmount.ViewModel) {

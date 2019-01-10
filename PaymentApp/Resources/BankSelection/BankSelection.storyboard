@@ -13,7 +13,7 @@
         <!--Selecciona tu banco-->
         <scene sceneID="Wvv-Td-1p6">
             <objects>
-                <viewController storyboardIdentifier="BankSelectionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="85z-ig-MyX" customClass="BankSelectionViewController" customModule="PaymentApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BankSelectionViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="85z-ig-MyX" customClass="BankSelectionViewController" customModule="PaymentApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="klp-W8-mhw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

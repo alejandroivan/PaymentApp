@@ -14,6 +14,7 @@ import UIKit
 
 @objc protocol InstallmentsSelectionRoutingLogic {
     //func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeToVoucher(segue: UIStoryboardSegue?)
 }
 
 protocol InstallmentsSelectionDataPassing {
@@ -26,32 +27,32 @@ class InstallmentsSelectionRouter: NSObject, InstallmentsSelectionRoutingLogic, 
 
     // MARK: Routing
 
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
-    //{
-    //  if let segue = segue {
-    //    let destinationVC = segue.destination as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //  } else {
-    //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-    //  }
-    //}
+    func routeToVoucher(segue: UIStoryboardSegue?)
+    {
+      if let segue = segue {
+        let destinationVC = segue.destination as! VoucherViewController
+        var destinationDS = destinationVC.router!.dataStore!
+        passDataToVoucher(source: dataStore!, destination: &destinationDS)
+      } else {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let destinationVC = storyboard.instantiateInitialViewController() as! VoucherViewController
+        var destinationDS = destinationVC.router!.dataStore!
+        passDataToVoucher(source: dataStore!, destination: &destinationDS)
+        navigateToVoucher(source: viewController!, destination: destinationVC)
+      }
+    }
 
     // MARK: Navigation
 
-    //func navigateToSomewhere(source: InstallmentsSelectionViewController, destination: SomewhereViewController)
-    //{
-    //  source.show(destination, sender: nil)
-    //}
+    func navigateToVoucher(source: InstallmentsSelectionViewController, destination: VoucherViewController)
+    {
+      source.show(destination, sender: nil)
+    }
 
     // MARK: Passing data
 
-    //func passDataToSomewhere(source: InstallmentsSelectionDataStore, destination: inout SomewhereDataStore)
-    //{
-    //  destination.name = source.name
-    //}
+    func passDataToVoucher(source: InstallmentsSelectionDataStore, destination: inout VoucherDataStore)
+    {
+//      destination.name = source.name
+    }
 }

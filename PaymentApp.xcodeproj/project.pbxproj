@@ -40,6 +40,12 @@
 		2C5A396321E6864C00811B0F /* Installment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5A396221E6864C00811B0F /* Installment.swift */; };
 		2C5A396521E68ABC00811B0F /* Issuer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5A396421E68ABC00811B0F /* Issuer.swift */; };
 		2C5A396721E68C9500811B0F /* PayerCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5A396621E68C9500811B0F /* PayerCost.swift */; };
+		2C5A396E21E7D7B500811B0F /* Voucher.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C5A396D21E7D7B500811B0F /* Voucher.storyboard */; };
+		2C5A397721E7D82D00811B0F /* VoucherPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5A397121E7D82D00811B0F /* VoucherPresenter.swift */; };
+		2C5A397921E7D82D00811B0F /* VoucherRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5A397321E7D82D00811B0F /* VoucherRouter.swift */; };
+		2C5A397A21E7D82D00811B0F /* VoucherModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5A397421E7D82D00811B0F /* VoucherModels.swift */; };
+		2C5A397B21E7D82D00811B0F /* VoucherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5A397521E7D82D00811B0F /* VoucherViewController.swift */; };
+		2C5A397C21E7D82D00811B0F /* VoucherInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5A397621E7D82D00811B0F /* VoucherInteractor.swift */; };
 		2C8E60C721E51E45003975A1 /* PaymentMethodCCTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8E60C621E51E44003975A1 /* PaymentMethodCCTableViewCell.swift */; };
 		2C94748121E0103C00521B53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C94748021E0103C00521B53 /* AppDelegate.swift */; };
 		2C94748321E0103C00521B53 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C94748221E0103C00521B53 /* ViewController.swift */; };
@@ -109,6 +115,12 @@
 		2C5A396221E6864C00811B0F /* Installment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Installment.swift; sourceTree = "<group>"; };
 		2C5A396421E68ABC00811B0F /* Issuer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Issuer.swift; sourceTree = "<group>"; };
 		2C5A396621E68C9500811B0F /* PayerCost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayerCost.swift; sourceTree = "<group>"; };
+		2C5A396D21E7D7B500811B0F /* Voucher.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Voucher.storyboard; sourceTree = "<group>"; };
+		2C5A397121E7D82D00811B0F /* VoucherPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherPresenter.swift; sourceTree = "<group>"; };
+		2C5A397321E7D82D00811B0F /* VoucherRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherRouter.swift; sourceTree = "<group>"; };
+		2C5A397421E7D82D00811B0F /* VoucherModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherModels.swift; sourceTree = "<group>"; };
+		2C5A397521E7D82D00811B0F /* VoucherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherViewController.swift; sourceTree = "<group>"; };
+		2C5A397621E7D82D00811B0F /* VoucherInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherInteractor.swift; sourceTree = "<group>"; };
 		2C8E60C621E51E44003975A1 /* PaymentMethodCCTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodCCTableViewCell.swift; sourceTree = "<group>"; };
 		2C94747D21E0103C00521B53 /* PaymentApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaymentApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C94748021E0103C00521B53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -282,6 +294,7 @@
 				2CB6B6F921E459A8000AAB61 /* PaymentMethod */,
 				2CB6B71521E5803F000AAB61 /* BankSelection */,
 				2C2A3ED821E593F600284A8D /* InstallmentsSelection */,
+				2C5A396C21E7D49F00811B0F /* Voucher */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -293,8 +306,29 @@
 				2CB6B6FC21E459D2000AAB61 /* PaymentMethodCC */,
 				2CF808FD21E580E3003D57D3 /* BankSelection */,
 				2C2A3ECB21E5939C00284A8D /* InstallmentsSelection */,
+				2C5A397021E7D81800811B0F /* Voucher */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		2C5A396C21E7D49F00811B0F /* Voucher */ = {
+			isa = PBXGroup;
+			children = (
+				2C5A396D21E7D7B500811B0F /* Voucher.storyboard */,
+			);
+			path = Voucher;
+			sourceTree = "<group>";
+		};
+		2C5A397021E7D81800811B0F /* Voucher */ = {
+			isa = PBXGroup;
+			children = (
+				2C5A397621E7D82D00811B0F /* VoucherInteractor.swift */,
+				2C5A397421E7D82D00811B0F /* VoucherModels.swift */,
+				2C5A397121E7D82D00811B0F /* VoucherPresenter.swift */,
+				2C5A397321E7D82D00811B0F /* VoucherRouter.swift */,
+				2C5A397521E7D82D00811B0F /* VoucherViewController.swift */,
+			);
+			path = Voucher;
 			sourceTree = "<group>";
 		};
 		2C8E60C521E51E2E003975A1 /* Cells */ = {
@@ -505,6 +539,7 @@
 				2CB6B6F521E44DD9000AAB61 /* Main.storyboard in Resources */,
 				2CB6B71721E5804E000AAB61 /* BankSelection.storyboard in Resources */,
 				2C94748B21E0103D00521B53 /* LaunchScreen.storyboard in Resources */,
+				2C5A396E21E7D7B500811B0F /* Voucher.storyboard in Resources */,
 				2C31FDC621E0130C009942E6 /* Configuration.plist in Resources */,
 				2C2A3EDA21E5940700284A8D /* InstallmentsSelection.storyboard in Resources */,
 				2C94748821E0103D00521B53 /* Assets.xcassets in Resources */,
@@ -604,9 +639,11 @@
 				2C5A396321E6864C00811B0F /* Installment.swift in Sources */,
 				2CB6B71321E45B5C000AAB61 /* PaymentMethodCCViewController.swift in Sources */,
 				2C0B0EB121E438BC00422394 /* FinancialInstitution.swift in Sources */,
+				2C5A397C21E7D82D00811B0F /* VoucherInteractor.swift in Sources */,
 				2C0B0EBE21E440A000422394 /* AmountRouter.swift in Sources */,
 				2CF8090921E580F6003D57D3 /* BankSelectionWorker.swift in Sources */,
 				2C0B0EAD21E437AA00422394 /* AdditionalInfo.swift in Sources */,
+				2C5A397921E7D82D00811B0F /* VoucherRouter.swift in Sources */,
 				2C31FDC421E01292009942E6 /* Configuration.swift in Sources */,
 				2C31FDD321E01CC0009942E6 /* URL+Extensions.swift in Sources */,
 				2C0B0EA821E434B800422394 /* BinSetting.swift in Sources */,
@@ -625,14 +662,17 @@
 				2CB6B71221E45B5C000AAB61 /* PaymentMethodCCRouter.swift in Sources */,
 				2C0B0EBD21E440A000422394 /* AmountPresenter.swift in Sources */,
 				2C0B0EAF21E4387F00422394 /* ProcessingMode.swift in Sources */,
+				2C5A397721E7D82D00811B0F /* VoucherPresenter.swift in Sources */,
 				2CF8090721E580F6003D57D3 /* BankSelectionRouter.swift in Sources */,
 				2C2A3ED521E593B400284A8D /* InstallmentsSelectionRouter.swift in Sources */,
 				2CF8090621E580F6003D57D3 /* BankSelectionPresenter.swift in Sources */,
 				2CB6B71021E45B5C000AAB61 /* PaymentMethodCCModels.swift in Sources */,
 				2CF8090521E580F6003D57D3 /* BankSelectionModels.swift in Sources */,
+				2C5A397A21E7D82D00811B0F /* VoucherModels.swift in Sources */,
 				2C94748121E0103C00521B53 /* AppDelegate.swift in Sources */,
 				2C0B0EA321E4337100422394 /* Setting.swift in Sources */,
 				2C2A3ED421E593B400284A8D /* InstallmentsSelectionPresenter.swift in Sources */,
+				2C5A397B21E7D82D00811B0F /* VoucherViewController.swift in Sources */,
 				2C2A3ED321E593B400284A8D /* InstallmentsSelectionModels.swift in Sources */,
 				2C2A3ED221E593B400284A8D /* InstallmentsSelectionInteractor.swift in Sources */,
 				2C31FDCF21E0185A009942E6 /* PaymentMethod.swift in Sources */,

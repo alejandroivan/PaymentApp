@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zZr-si-raH">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Voucher View Controller-->
+        <scene sceneID="25n-1F-MkR">
+            <objects>
+                <viewController storyboardIdentifier="VoucherViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zZr-si-raH" customClass="VoucherViewController" customModule="PaymentApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AHQ-ju-zw7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¡Compra exitosa!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dnn-yC-A5D">
+                                <rect key="frame" x="8" y="40" width="359" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="4G5-1m-UXB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Has completado con éxito todos los pasos para realizar tu compra. Aquí está el detalle." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7c-EN-m2U">
+                                <rect key="frame" x="8" y="88" width="359" height="41"/>
+                                <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="15"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gkt-Gg-VVY">
+                                <rect key="frame" x="8" y="587" width="359" height="60"/>
+                                <color key="backgroundColor" red="0.93333333330000001" green="0.46666666670000001" blue="0.035294117649999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="0Iu-Et-rhY"/>
+                                </constraints>
+                                <state key="normal" title="Cerrar">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="closePopup:" destination="zZr-si-raH" eventType="touchUpInside" id="qdd-3B-AJz"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="j5F-Q8-6nG" firstAttribute="trailing" secondItem="Gkt-Gg-VVY" secondAttribute="trailing" constant="8" id="9R2-wf-vTY"/>
+                            <constraint firstItem="x7c-EN-m2U" firstAttribute="top" secondItem="dnn-yC-A5D" secondAttribute="bottom" constant="8" id="Ant-53-9g1"/>
+                            <constraint firstItem="j5F-Q8-6nG" firstAttribute="trailing" secondItem="dnn-yC-A5D" secondAttribute="trailing" constant="8" id="B6W-Sg-zyy"/>
+                            <constraint firstItem="dnn-yC-A5D" firstAttribute="top" secondItem="j5F-Q8-6nG" secondAttribute="top" constant="20" id="CHZ-Tp-ITz"/>
+                            <constraint firstItem="j5F-Q8-6nG" firstAttribute="trailing" secondItem="x7c-EN-m2U" secondAttribute="trailing" constant="8" id="HeZ-d2-Cha"/>
+                            <constraint firstItem="x7c-EN-m2U" firstAttribute="leading" secondItem="j5F-Q8-6nG" secondAttribute="leading" constant="8" id="KkJ-gy-Wbi"/>
+                            <constraint firstItem="j5F-Q8-6nG" firstAttribute="bottom" secondItem="Gkt-Gg-VVY" secondAttribute="bottom" constant="20" id="QFa-6o-Ix9"/>
+                            <constraint firstItem="dnn-yC-A5D" firstAttribute="leading" secondItem="j5F-Q8-6nG" secondAttribute="leading" constant="8" id="SSD-Cx-as2"/>
+                            <constraint firstItem="Gkt-Gg-VVY" firstAttribute="leading" secondItem="j5F-Q8-6nG" secondAttribute="leading" constant="8" id="baM-CN-gpt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="j5F-Q8-6nG"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="7rw-PO-TXE"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cwu-yi-jHy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="924" y="114"/>
+        </scene>
+    </scenes>
+</document>

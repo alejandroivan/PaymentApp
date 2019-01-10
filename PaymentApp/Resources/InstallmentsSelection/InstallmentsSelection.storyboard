@@ -82,11 +82,20 @@
                     <connections>
                         <outlet property="activityIndicator" destination="LGU-IP-xHV" id="ns4-1U-mxT"/>
                         <outlet property="tableView" destination="vnd-Qb-bCV" id="utE-zC-0VM"/>
+                        <segue destination="XcW-iw-R3h" kind="presentation" identifier="Voucher" modalTransitionStyle="crossDissolve" id="BMq-8f-uTG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xvu-sP-XFt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1100" y="174.96251874062969"/>
+        </scene>
+        <!--Voucher-->
+        <scene sceneID="mBf-st-Vzz">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Voucher" id="XcW-iw-R3h" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4t5-3z-jcL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1767" y="175"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Sgv-ka-DcB">
