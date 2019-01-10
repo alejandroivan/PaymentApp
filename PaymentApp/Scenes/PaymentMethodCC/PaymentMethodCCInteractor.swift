@@ -56,9 +56,23 @@ class PaymentMethodCCInteractor: PaymentMethodCCBusinessLogic, PaymentMethodCCDa
                 return
             }
 
-            self?.paymentMethods = methods
+            let filteredMethods = methods.filter {
+                guard let intAmount = self?.amount else { return false }
+                let amount = Double(intAmount)
+                return amount >= $0.minAllowedAmount && amount <= $0.maxAllowedAmount
+            }
 
-            let methodsResponse = ResponseType(isLoading: false, paymentMethods: methods)
+            self?.paymentMethods = filteredMethods
+
+            guard !filteredMethods.isEmpty else {
+                let errorResponse = ErrorType(title: "Error al cargar",
+                                              message: "No se ha encontrado métodos de pago que permitan el monto ingresado. Inténtalo nuevamente.")
+
+                self?.presenter?.presentErrorMessage(response: errorResponse)
+                return
+            }
+
+            let methodsResponse = ResponseType(isLoading: false, paymentMethods: filteredMethods)
             self?.presenter?.presentPaymentMethods(response: methodsResponse)
         })
     }
