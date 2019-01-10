@@ -47,6 +47,6 @@ class PaymentMethodCCRouter: NSObject, PaymentMethodCCRoutingLogic, PaymentMetho
     // MARK: Passing data
     func passDataToBankSelection(source: PaymentMethodCCDataStore, destination: inout BankSelectionDataStore) {
         destination.amount = source.amount
-        destination.paymentMethodId = source.selectedPaymentMethod?.id
+        destination.paymentMethod = source.selectedPaymentMethod
     }
 }

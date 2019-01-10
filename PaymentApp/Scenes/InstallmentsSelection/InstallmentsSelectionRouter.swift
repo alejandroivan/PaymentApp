@@ -51,8 +51,10 @@ class InstallmentsSelectionRouter: NSObject, InstallmentsSelectionRoutingLogic, 
 
     // MARK: Passing data
 
-    func passDataToVoucher(source: InstallmentsSelectionDataStore, destination: inout VoucherDataStore)
-    {
-//      destination.name = source.name
+    func passDataToVoucher(source: InstallmentsSelectionDataStore, destination: inout VoucherDataStore) {
+        destination.amount = source.amount
+        destination.paymentMethod = source.paymentMethod
+        destination.cardIssuer = source.cardIssuer
+        destination.installment = source.selectedPayerCost
     }
 }

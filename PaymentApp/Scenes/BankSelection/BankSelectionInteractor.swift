@@ -19,7 +19,8 @@ protocol BankSelectionBusinessLogic {
 
 protocol BankSelectionDataStore {
     var amount: Int? { get set }
-    var paymentMethodId: String? { get set }
+    var paymentMethod: PaymentMethod? { get set }
+    var paymentMethodId: String? { get }
     var selectedBank: Bank? { get set }
 }
 
@@ -28,7 +29,10 @@ class BankSelectionInteractor: BankSelectionBusinessLogic, BankSelectionDataStor
     var worker: BankSelectionWorker? = BankSelectionWorker()
 
     var amount: Int?
-    var paymentMethodId: String?
+
+    var paymentMethod: PaymentMethod?
+    var paymentMethodId: String? { return paymentMethod?.id }
+
     var selectedBank: Bank?
     var banks: Banks = []
 

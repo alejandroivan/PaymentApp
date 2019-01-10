@@ -15,12 +15,19 @@ import UIKit
 enum Voucher {
     // MARK: Use cases
 
-    enum Something {
-        struct Request {
-        }
+    enum ShowData {
         struct Response {
+            var amount: Int?
+            var paymentMethodName: String?
+            var bank: String?
+            var installments: String?
         }
+
         struct ViewModel {
+            var amount: String?
+            var paymentMethodName: String?
+            var bank: String?
+            var installments: String?
         }
     }
 }

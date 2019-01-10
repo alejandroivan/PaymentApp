@@ -13,15 +13,38 @@
 import UIKit
 
 protocol VoucherBusinessLogic {
+    func didLoadView()
     func didPressCloseButton()
 }
 
 protocol VoucherDataStore {
-
+    var amount: Int? { get set }
+    var paymentMethod: PaymentMethod? { get set }
+    var cardIssuer: Bank? { get set }
+    var installment: PayerCost? { get set }
 }
 
 class VoucherInteractor: VoucherBusinessLogic, VoucherDataStore {
     var presenter: VoucherPresentationLogic?
+
+    var amount: Int?
+
+    var paymentMethod: PaymentMethod?
+    var paymentMethodId: String? { return paymentMethod?.id }
+
+    var cardIssuer: Bank?
+    var cardIssuerId: String? { return cardIssuer?.id }
+
+    var installment: PayerCost?
+
+    // MARK: - Business Logic
+    func didLoadView() {
+        let response = Voucher.ShowData.Response(amount: amount,
+                                                 paymentMethodName: paymentMethod?.name,
+                                                 bank: cardIssuer?.name,
+                                                 installments: installment?.recommendedMessage)
+        presenter?.displayData(response: response)
+    }
 
     func didPressCloseButton() {
         presenter?.dismissVoucher()

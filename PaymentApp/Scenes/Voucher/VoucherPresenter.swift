@@ -13,13 +13,27 @@
 import UIKit
 
 protocol VoucherPresentationLogic {
+    func displayData(response: Voucher.ShowData.Response)
     func dismissVoucher()
 }
 
 class VoucherPresenter: VoucherPresentationLogic {
     weak var viewController: VoucherDisplayLogic?
 
-    // MARK: Do something
+    // MARK: Presentation Logic
+
+    func displayData(response: Voucher.ShowData.Response) {
+        guard let amount = response.amount, let paymentMethod = response.paymentMethodName, let bank = response.bank, let installments = response.installments else {
+                return // Should never happen if we're here, but just in case...
+        }
+
+        let viewModel = Voucher.ShowData.ViewModel(amount: "$\(amount)",
+                                                   paymentMethodName: paymentMethod,
+                                                   bank: bank,
+                                                   installments: installments)
+
+        viewController?.displayData(viewModel: viewModel)
+    }
 
     func dismissVoucher() {
         viewController?.dismissPopup()

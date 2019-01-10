@@ -19,8 +19,9 @@ protocol InstallmentsSelectionBusinessLogic {
 
 protocol InstallmentsSelectionDataStore {
     var amount: Int? { get set }
-    var paymentMethodId: String? { get set }
-    var cardIssuerId: String? { get set }
+    var paymentMethod: PaymentMethod? { get set }
+    var cardIssuer: Bank? { get set }
+    var selectedPayerCost: PayerCost? { get set }
 }
 
 class InstallmentsSelectionInteractor: InstallmentsSelectionBusinessLogic, InstallmentsSelectionDataStore {
@@ -28,8 +29,13 @@ class InstallmentsSelectionInteractor: InstallmentsSelectionBusinessLogic, Insta
     var worker: InstallmentsSelectionWorker? = InstallmentsSelectionWorker()
 
     var amount: Int?
-    var paymentMethodId: String?
-    var cardIssuerId: String?
+
+    var paymentMethod: PaymentMethod?
+    var paymentMethodId: String? { return paymentMethod?.id }
+
+    var cardIssuer: Bank?
+    var cardIssuerId: String? { return cardIssuer?.id }
+
     var payerCosts: PayerCosts = []
     var selectedPayerCost: PayerCost?
 

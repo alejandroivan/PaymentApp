@@ -13,12 +13,18 @@
 import UIKit
 
 protocol VoucherDisplayLogic: class {
+    func displayData(viewModel: Voucher.ShowData.ViewModel)
     func dismissPopup()
 }
 
 class VoucherViewController: UIViewController, VoucherDisplayLogic {
     var interactor: VoucherBusinessLogic?
     var router: (NSObjectProtocol & VoucherRoutingLogic & VoucherDataPassing)?
+
+    @IBOutlet weak var amountLabel: UILabel!
+    @IBOutlet weak var paymentMethodLabel: UILabel!
+    @IBOutlet weak var bankLabel: UILabel!
+    @IBOutlet weak var installmentsLabel: UILabel!
 
     // MARK: Object lifecycle
 
@@ -51,9 +57,19 @@ class VoucherViewController: UIViewController, VoucherDisplayLogic {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        requestData()
     }
 
-    // MARK: Use cases
+    // MARK: - Display Logic
+
+    func displayData(viewModel: Voucher.ShowData.ViewModel) {
+        amountLabel.text = viewModel.amount
+        paymentMethodLabel.text = viewModel.paymentMethodName
+        bankLabel.text = viewModel.bank
+        installmentsLabel.text = viewModel.installments
+    }
+
+    // MARK: Methods
 
     @IBAction func closePopup(_ sender: Any) {
         interactor?.didPressCloseButton()
@@ -61,5 +77,9 @@ class VoucherViewController: UIViewController, VoucherDisplayLogic {
 
     func dismissPopup() {
         router?.dismissModalScene()
+    }
+
+    func requestData() {
+        interactor?.didLoadView()
     }
 }
