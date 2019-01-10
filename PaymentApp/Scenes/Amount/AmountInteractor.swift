@@ -35,8 +35,11 @@ class AmountInteractor: AmountBusinessLogic, AmountDataStore {
             amount = 0
             presenter?.clearAmount()
         } else {
-            amount = Int(cleanString)
-            let response = Amount.FormatAmount.Response(amount: amount!)
+            if let parsedAmount = Int(cleanString) { // Restricts the amount to the maximum representable by an Int
+                amount = parsedAmount
+            }
+
+            let response = Amount.FormatAmount.Response(amount: amount ?? 0)
             presenter?.presentAmount(response: response)
         }
     }
